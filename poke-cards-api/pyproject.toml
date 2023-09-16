@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "poke-cards-api"
+version = "0.1.0"
+description = "This project is an API for a playground to implement a rotation ML model on Pokémon cards."
+authors = ["Lilian Delouvy <https://github.com/lilian-delouvy>"]
+readme = "../README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flask = "^2.3.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
