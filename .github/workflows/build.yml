@@ -31,7 +31,7 @@ jobs:
           cd poke-cards-api
           poetry install
           poetry run coverage run -m unittest discover tests
-          poetry run coverage xml -o ../coverage-reports/coverage-report.xml --rcfile=../.coveragerc
+          poetry run coverage xml -o coverage-reports/coverage-report.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: SonarCloud Scan
