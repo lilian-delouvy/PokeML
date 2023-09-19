@@ -1,4 +1,5 @@
 # PokeML
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=lilian-delouvy_PokeML&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=lilian-delouvy_PokeML)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=lilian-delouvy_PokeML&metric=coverage)](https://sonarcloud.io/summary/new_code?id=lilian-delouvy_PokeML)
 
 This project is a playground to implement a rotation ML model on Pokémon cards.
