@@ -1,4 +1,6 @@
-# poke-cards-ml
+# PokeML
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=lilian-delouvy_PokeML&metric=coverage)](https://sonarcloud.io/summary/new_code?id=lilian-delouvy_PokeML)
+
 This project is a playground to implement a rotation ML model on Pokémon cards.
 
 ## Project architecture
@@ -22,4 +24,4 @@ You can start the api by running ```flask --app controller run``` inside the "sr
 
 ### Tests
 
-You can run the api unit tests by placing yourself in the "poke-cards-api" directory and running ```python -m unittest discover tests```.
+You can run the api unit tests by placing yourself in the "pokeml-api" directory and running ```python -m unittest discover tests```.

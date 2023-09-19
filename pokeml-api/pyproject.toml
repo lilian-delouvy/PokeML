@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "poke-cards-api"
+name = "pokeml-api"
 version = "0.1.0"
 description = "This project is an API for a playground to implement a rotation ML model on Pokémon cards."
 authors = ["Lilian Delouvy <https://github.com/lilian-delouvy>"]
