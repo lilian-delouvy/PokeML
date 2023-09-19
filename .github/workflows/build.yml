@@ -5,7 +5,7 @@ on:
       - main
       - build/*
   pull_request:
-    types: [opened]
+    types: [opened, synchronize]
 
 env:
   PYTHON_VERSION: "3.11"
