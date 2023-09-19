@@ -29,7 +29,7 @@ jobs:
           echo "$HOME/.local/bin" >> $GITHUB_PATH
       - name: Generate Report
         run: |
-          cd poke-cards-api
+          cd pokeml-api
           poetry install
           poetry run coverage run -m unittest discover tests
           poetry run coverage xml -o coverage-reports/coverage-report.xml
@@ -41,4 +41,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
-          projectBaseDir: poke-cards-api/
+          projectBaseDir: pokeml-api/
