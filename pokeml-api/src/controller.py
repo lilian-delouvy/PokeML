@@ -12,3 +12,13 @@ def base():
 @app.route("/<path:path>")
 def home(path):
     return send_from_directory('resources', path)
+
+
+@app.route("/health")
+def health():
+    return "OK"
+
+
+if __name__ == '__main__':
+    # host is required for containerized environments
+    app.run(host='0.0.0.0')
