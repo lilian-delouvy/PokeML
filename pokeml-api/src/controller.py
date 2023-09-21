@@ -1,4 +1,5 @@
-from flask import Flask, send_from_directory
+from flask import Flask, send_from_directory, Response
+from werkzeug.exceptions import NotFound
 
 # flask --app src/controller.py run
 app = Flask(__name__)
@@ -6,12 +7,18 @@ app = Flask(__name__)
 
 @app.route("/")
 def base():
-    return send_from_directory('resources', 'index.html')
+    try:
+        return send_from_directory('resources', 'index.html')
+    except NotFound:
+        return Response("The front app has not been built. Please follow the README.", status=404, mimetype='application/json')
 
 
 @app.route("/<path:path>")
 def home(path):
-    return send_from_directory('resources', path)
+    try:
+        return send_from_directory('resources', path)
+    except FileNotFoundError:
+        return "The front app has not been built. Please follow the README."
 
 
 @app.route("/health")

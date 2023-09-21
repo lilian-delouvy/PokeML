@@ -38,4 +38,9 @@ You can still call the "localhost:5000/health" route.
 
 ### Tests
 
+#### Api
 You can run the api unit tests by placing yourself in the "pokeml-api" directory and running ```python -m unittest discover tests```.
+
+If you want to debug, here is a test setup example with PyCharm Community:
+
+![Python test setup example on PyCharm Community](./documentation/images/python_test_config.png)
