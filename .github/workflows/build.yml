@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - main
-      - build/*
   pull_request:
     types: [opened, synchronize]
 
@@ -32,7 +31,8 @@ jobs:
           cd pokeml-api
           poetry install
           poetry run coverage run -m unittest discover tests
-          poetry run coverage xml -o coverage-reports/coverage-report.xml
+          poetry run coverage lcov -o coverage-reports/coverage.lcov
+          # poetry run coverage xml -o coverage-reports/coverage-report.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Setup Node.js environment
@@ -41,13 +41,19 @@ jobs:
           node-version: 16
       - name: Generate Javascript Coverage Report
         run: |
+          cd pokeml-front
           npm install
           npm run coverage
       - name: Setup lcov
-        run: npm install -g lcov
+        run: |
+          npm install -g lcov
+          pip install lcov-cobertura
       - name: Aggregate Python and Javascript Reports
         run: |
-          lcov -a ./pokeml-api/coverage.lcov -a ./pokeml-front/coverage/lcov.info -o aggregated.lcov.info
+          mkdir coverage-report
+          lcov -a ./pokeml-api/coverage-reports/coverage.lcov -a ./pokeml-front/coverage/lcov.info -o ./coverage-report/aggregated.lcov
+          lcov_cobertura aggregated.lcov -b coverage-report -o coverage-report/coverage.xml
+          echo "Done !"
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
