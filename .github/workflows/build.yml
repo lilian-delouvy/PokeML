@@ -50,9 +50,9 @@ jobs:
           pip install lcov-cobertura
       - name: Aggregate Python and Javascript Reports
         run: |
-          mkdir coverage-report
-          lcov -a ./pokeml-api/coverage-reports/coverage.lcov -a ./pokeml-front/coverage/lcov.info -o ./coverage-report/aggregated.lcov
-          lcov_cobertura aggregated.lcov -b coverage-report -o coverage-report/coverage.xml
+          mkdir coverage-reports
+          lcov -a ./pokeml-api/coverage-reports/coverage.lcov -a ./pokeml-front/coverage/lcov.info -o ./coverage-reports/aggregated.lcov
+          lcov_cobertura aggregated.lcov -b coverage-reports -o coverage-reports/coverage.xml
           echo "Done !"
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
