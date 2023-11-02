@@ -49,8 +49,7 @@ jobs:
         run: |
           npm install -g lcov-result-merger
           pip install lcov-cobertura
-          mkdir coverage-reports
-          ./pokeml-front/node_modules/.bin/lcov_result_merger 'coverage-reports/coverage_*.lcov' 'coverage-reports/aggregated.lcov'
+          lcov-result-merger 'coverage-reports/coverage_*.lcov' 'coverage-reports/aggregated.lcov'
           #lcov -a ./pokeml-api/coverage-reports/coverage.lcov -a ./pokeml-front/coverage/coverage.lcov -o ./coverage-reports/aggregated.lcov
           #echo "Aggregated coverage"
           #cd coverage-reports
