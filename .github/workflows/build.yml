@@ -44,15 +44,16 @@ jobs:
           cd pokeml-front
           npm install
           npm run coverage
-      - name: Setup lcov
+          mv ./coverage/lcov.info ./coverage/coverage.lcov
+      - name: Aggregate Python and Javascript Reports
         run: |
           npm install -g lcov
           pip install lcov-cobertura
-      - name: Aggregate Python and Javascript Reports
-        run: |
           mkdir coverage-reports
-          lcov -a ./pokeml-api/coverage-reports/coverage.lcov -a ./pokeml-front/coverage/lcov.info -o ./coverage-reports/aggregated.lcov
+          lcov -a ./pokeml-api/coverage-reports/coverage.lcov -a ./pokeml-front/coverage/coverage.lcov -o ./coverage-reports/aggregated.lcov
           echo "Aggregated coverage"
+          cd coverage-reports
+          lcov_cobertura aggregated.lcov -o coverage.xml
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
