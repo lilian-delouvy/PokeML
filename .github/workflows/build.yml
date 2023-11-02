@@ -52,7 +52,9 @@ jobs:
         run: |
           mkdir coverage-reports
           lcov -a ./pokeml-api/coverage-reports/coverage.lcov -a ./pokeml-front/coverage/lcov.info -o ./coverage-reports/aggregated.lcov
-          lcov_cobertura aggregated.lcov -b coverage-reports -o coverage-reports/coverage.xml
+          echo "Aggregated coverage"
+          cd coverage-reports
+          lcov_cobertura aggregated.lcov -o coverage.xml
           echo "Done !"
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
