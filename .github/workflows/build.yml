@@ -31,7 +31,7 @@ jobs:
           cd pokeml-api
           poetry install
           poetry run coverage run -m unittest discover tests
-          poetry run coverage lcov -o coverage-reports/coverage.lcov
+          poetry run coverage lcov -o ../coverage-reports/coverage_1.lcov
           # poetry run coverage xml -o coverage-reports/coverage-report.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -44,15 +44,16 @@ jobs:
           cd pokeml-front
           npm install
           npm run coverage
-          mv ./coverage/lcov.info ./coverage/coverage.lcov
+          mv ./coverage/lcov.info ../coverage-reports/coverage_2.lcov
       - name: Aggregate Python and Javascript Reports
         run: |
-          npm install -g lcov
+          npm install -g lcov-result-merger
           pip install lcov-cobertura
           mkdir coverage-reports
-          lcov -a ./pokeml-api/coverage-reports/coverage.lcov -a ./pokeml-front/coverage/coverage.lcov -o ./coverage-reports/aggregated.lcov
-          echo "Aggregated coverage"
-          cd coverage-reports
+          ./pokeml-front/node_modules/.bin/lcov_result_merger 'coverage-reports/coverage_*.lcov' 'coverage-reports/aggregated.lcov'
+          #lcov -a ./pokeml-api/coverage-reports/coverage.lcov -a ./pokeml-front/coverage/coverage.lcov -o ./coverage-reports/aggregated.lcov
+          #echo "Aggregated coverage"
+          #cd coverage-reports
           lcov_cobertura aggregated.lcov -o coverage.xml
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
