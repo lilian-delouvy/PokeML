@@ -32,7 +32,8 @@ jobs:
           poetry install
           poetry run coverage run -m unittest discover tests
           poetry run coverage lcov -o ../coverage-reports/coverage_1.lcov
-          # poetry run coverage xml -o coverage-reports/coverage-report.xml
+          sed -i 's/SF:/&pokeml-api\//' ../coverage-reports/coverage_1.lcov
+          cat ../coverage-reports/coverage_1.lcov
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Setup Node.js environment
@@ -45,6 +46,8 @@ jobs:
           npm install
           npm run coverage
           mv ./coverage/lcov.info ../coverage-reports/coverage_2.lcov
+          sed -i 's/SF:/&pokeml-front\//' ../coverage-reports/coverage_2.lcov
+          cat ../coverage-reports/coverage_2.lcov
       - name: Aggregate Python and Javascript Reports
         run: |
           npm install -g lcov-result-merger
