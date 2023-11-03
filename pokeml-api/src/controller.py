@@ -17,8 +17,8 @@ def base():
 def home(path):
     try:
         return send_from_directory('resources', path)
-    except FileNotFoundError:
-        return "The front app has not been built. Please follow the README."
+    except NotFound:
+        return Response("The associated resource does not exist.", status=404, mimetype='application/json')
 
 
 @app.route("/health")
